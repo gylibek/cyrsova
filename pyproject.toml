@@ -14,3 +14,21 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+name = "bank-analysis"
+version = "0.1.0"
+description = "Курсовая работа: анализ банковских транзакций"
+authors = ["Your Name"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.0"
+requests = "^2.31"
+openpyxl = "^3.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+pytest-cov = "^4.1"
+flake8 = "^6.1"
