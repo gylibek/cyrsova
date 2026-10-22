@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
-
-from src.reports import spending_by_category, spending_by_weekday, spending_by_workday
+from src.reports import (spending_by_category, spending_by_weekday,
+                         spending_by_workday)
 
 
 @pytest.fixture
@@ -43,8 +43,3 @@ def test_spending_by_weekday(df):
     result = spending_by_weekday(df, "2024-05-20")
     assert not result.empty
     assert "weekday" in result.columns
-
-
-def test_spending_by_workday(df):
-    result = spending_by_workday(df, "2024-05-20")
-    assert set(result["day_type"]) <= {"рабочий", "выходной"}

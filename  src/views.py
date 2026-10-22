@@ -4,12 +4,8 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
 
-from .utils import (
-    fetch_currency_rates,
-    fetch_stock_prices,
-    get_greeting,
-    load_user_settings,
-)
+from .utils import (fetch_currency_rates, fetch_stock_prices, get_greeting,
+                    load_user_settings)
 
 logger = logging.getLogger(__name__)
 

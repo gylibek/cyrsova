@@ -1,11 +1,7 @@
 from datetime import datetime
 
-from src.services import (
-    investment_bank,
-    search_person_transfers,
-    search_phone_numbers,
-    simple_search,
-)
+from src.services import (investment_bank, search_person_transfers,
+                          search_phone_numbers, simple_search)
 
 
 def _tx(date, amount, category, description):
