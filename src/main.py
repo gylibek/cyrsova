@@ -1,15 +1,11 @@
-# src/main.py
+
 import json
 from pathlib import Path
 
-from src.reports import spending_by_category, spending_by_weekday, spending_by_workday
-from src.services import (
-    cashback_categories,
-    investment_bank,
-    search_person_transfers,
-    search_phone_numbers,
-    simple_search,
-)
+from src.reports import spending_by_category, spending_by_weekday
+from src.services import (cashback_categories, investment_bank,
+                          search_person_transfers, search_phone_numbers,
+                          simple_search)
 from src.utils import read_transactions_dataframe, read_transactions_from_excel
 from src.views import events_page_view, main_page_view
 
@@ -60,9 +56,6 @@ def demo() -> None:
 
     print("\n=== ТРАТЫ ПО ДНЯМ НЕДЕЛИ ===")
     print(spending_by_weekday(transactions_df, "2024-05-20"))
-
-    print("\n=== ТРАТЫ В РАБОЧИЙ/ВЫХОДНОЙ ===")
-    print(spending_by_workday(transactions_df, "2024-05-20"))
 
 
 if __name__ == "__main__":

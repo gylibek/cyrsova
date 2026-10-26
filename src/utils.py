@@ -1,9 +1,10 @@
-# src/utils.py
+
 import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, cast
+
 
 import pandas as pd
 import requests
@@ -12,6 +13,7 @@ logger = logging.getLogger(__name__)
 BASE_DIR = Path(__file__).resolve().parent.parent
 SETTINGS_PATH = BASE_DIR / "user_settings.json"
 
+
 # ---------- настройки пользователя ----------
 def load_user_settings(path: Path = SETTINGS_PATH) -> Dict[str, List[str]]:
     """Читает user_settings.json."""
@@ -19,14 +21,16 @@ def load_user_settings(path: Path = SETTINGS_PATH) -> Dict[str, List[str]]:
         return json.load(f)
 
 
-# ---------- чтение Excel ----------
 def read_transactions_from_excel(file_path: str | Path) -> List[Dict[str, Any]]:
     """Читает Excel и возвращает список словарей (без привязки к бизнес-логике)."""
     df = pd.read_excel(file_path)
-    # приводим дату к datetime и убираем невалидные строки
     df["Дата операции"] = pd.to_datetime(df["Дата операции"], errors="coerce", dayfirst=True)
     df = df.dropna(subset=["Дата операции"])
-    return df.to_dict(orient="records")
+
+    result: List[Dict[str, Any]] = []
+    for row in df.to_dict(orient="records"):
+        result.append({str(k): v for k, v in row.items()})
+    return result
 
 
 def read_transactions_dataframe(file_path: str | Path) -> pd.DataFrame:

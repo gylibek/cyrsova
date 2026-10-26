@@ -1,4 +1,4 @@
-# src/services.py
+
 import json
 import logging
 import re
@@ -90,9 +90,8 @@ def simple_search(transactions: List[Dict[str, Any]], query: str) -> str:
 
 
 # ========== 4. ПОИСК ПО ТЕЛЕФОННЫМ НОМЕРАМ ==========
-# Поддерживает: +7 921 11-22-33, 8 900 000-00-00, 89000000000 и т.п.
 PHONE_PATTERN = re.compile(
-    r"(?:\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}"
+    r"(?:\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{2,3}[\s\-]?\d{2}[\s\-]?\d{2}"
 )
 
 
@@ -110,9 +109,10 @@ def search_phone_numbers(transactions: List[Dict[str, Any]]) -> str:
             })
     return json.dumps(matched, ensure_ascii=False, indent=2, default=str)
 
-
 # ========== 5. ПОИСК ПЕРЕВОДОВ ФИЗЛИЦАМ ==========
 # Категория «Переводы» + в описании имя и первая буква фамилии с точкой.
+
+
 PERSON_PATTERN = re.compile(r"\b[А-ЯЁ][а-яё]+\s+[А-ЯЁ]\.")
 
 

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
-from src.reports import (spending_by_category, spending_by_weekday,
-                         spending_by_workday)
+
+from src.reports import spending_by_category, spending_by_weekday
 
 
 @pytest.fixture
