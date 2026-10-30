@@ -89,11 +89,13 @@ def simple_search(transactions: List[Dict[str, Any]], query: str) -> str:
     return json.dumps(matched, ensure_ascii=False, indent=2, default=str)
 
 
-# ========== 4. ПОИСК ПО ТЕЛЕФОННЫМ НОМЕРАМ ==========
+# src/services.py (фрагмент)
+
+# Поддерживает: +7 921 11-22-33, +7 (900) 000-00-00,
+# 89000000000, 8 900 000 00 00, +79211112233 и т.п.
 PHONE_PATTERN = re.compile(
     r"(?:\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{2,3}[\s\-]?\d{2}[\s\-]?\d{2}"
 )
-
 
 def search_phone_numbers(transactions: List[Dict[str, Any]]) -> str:
     """Возвращает транзакции, в описании которых есть мобильный номер."""
